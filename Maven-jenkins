@@ -6,6 +6,12 @@ pipeline
     stage ('scm checkout or download the code')
      { steps { git 'https://github.com/soniyakarade-ash/mavenproject.git' } }
 
+   stage ('compile the code')
+    { steps { withMaven(globalMavenSettingsConfig: '', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '', traceability: true) 
+    { sh 'mvn compile' } 
+        } 
+    }
+
      
   }
 }
