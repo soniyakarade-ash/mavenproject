@@ -6,12 +6,14 @@ pipeline
     stage ('scm checkout or download the code')
      { steps { git 'https://github.com/soniyakarade-ash/mavenproject.git' } }
 
-   withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)
+    stage ('compile the code')
+    { steps { withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)
      {
-        sh 'mvn compile' 
-      } 
-    } }
+       sh 'mvn compile'
+     } 
+        } 
+    }
 
-     
+
   }
 }
