@@ -2,30 +2,30 @@ pipeline
 { 
   agent any 
   stages
-  {
-    stage ('scm checkout or download the code')
-     { steps { git 'https://github.com/soniyakarade-ash/mavenproject.git' } }
-
-    stage ('execute unit test framework')
-    {
-      steps{ withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)  
-      { sh 'mvn test' }
-     }
-    }
+        {
+          stage ('scm checkout')
+         { steps { git 'https://github.com/soniyakarade-ash/mavenproject.git' } }
     
-    stage ('generate deployable pacakge')
-    {
-      steps{ withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)  
-      { sh 'mvn package' }
-     }
-    }
-
-    stage ('mvn install goal')
-    {
-      steps{ withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)  
-      { sh 'mvn install' }
-     }
-    }
+          stage ('execute unit test framework')
+          {
+            steps{ withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)  
+            { sh 'mvn test' }
+           }
+        }
+        
+          stage ('generate deployable pacakge')
+          {
+            steps{ withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)  
+            { sh 'mvn package' }
+           }
+        }
+    
+        stage ('mvn install goal')
+        {
+          steps{ withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)  
+          { sh 'mvn install' }
+         }
+        }
 
   }
 }
