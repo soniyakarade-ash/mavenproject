@@ -13,19 +13,5 @@ pipeline
            }
         }
         
-          stage ('generate deployable pacakge')
-          {
-            steps{ withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)  
-            { sh 'mvn package' }
-           }
-        }
-    
-        stage ('mvn install goal')
-        {
-          steps{ withMaven(globalMavenSettingsConfig: '7e1d9e57-d581-4361-aaea-98dd66b034bd', jdk: ' localJDK', maven: 'LocalMVN', mavenSettingsConfig: '060ccaf4-013e-4c36-879f-d7c18c9e8969', traceability: true)  
-          { sh 'mvn install' }
-         }
-        }
-
-  }
+  }  
 }
